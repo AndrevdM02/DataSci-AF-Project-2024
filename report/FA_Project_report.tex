@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm} % Adjust the space above the title
+    {\Large\bfseries Data Science 316 AF Project\par}
+    \vspace{2cm} % Adjust the gap between the title and the author names
+    {\Large\textbf{Regularisation: a crucial principle in statistical learning}\par}
+    \vspace{1cm} % Adjust the gap between student names
+    {\large Andre van der Merwe \\ 24923273\par}
+
+    \vfill % Pushes the following text to the bottom of the page
+    {\large Stellenbosch University\par}
+    \vspace{0.5cm} % Adjust the gap below the university name
+    {\large Date of Submission: 13 May 2024\par}
+\end{titlepage}
+
+\newpage
+
+\section*{The importance of regularisation}
+\paragraph{What is regularisation?}~
+\newline~
+\newline~
+Regularisation is a technique we use in machine learning and statistical learning to prevent overfitting and
+to improve a model's ability to perform accurately on unseen or new data, also known as the generalisation of a model.
+\\ Regularisation is implemented by adding a penalty term to the model's objective function (also known as the loss function or error function).
+
+\paragraph{The significance of Regularisation.}~
+\newline~
+\newline~
+The objective function of a model quantifies the error or difference between the model's predicted output and the true output.
+\\ The goal during the training of a model is to minimize this objective function. By adding a penalty term to the objective function, regularisation forces the coefficients (weights) of the model to be small. This then:
+\begin{itemize}
+    \item reduces the complexity of the model
+    \item prevents the model from overfitting 
+\end{itemize}
+Another benefit of using regularisation is that it reduces the amount of error or noise (variance) in the model's predictions. 
+
+\paragraph{The impact of different strengths of the regularisation}~
+\newline~
+\newline~
+The strength of the regularisation is controlled by the penalty term, which is a hyperparameter. Since the penalty is a hyperparameter, the person building a model,
+that uses regularisation, can choose the value of the penalty term. \\ Choosing the appropriate value for the penalty term is crucial, as it directly impacts the trade-off
+between model complexity and generalisation performance.
+\begin{itemize}
+    \item A higher value for the penalty term results to:
+    \begin{itemize}
+        \item Stronger regularisation.
+        \item A simpler model.
+        \item Models are less prone to overfitting.
+    \end{itemize}
+    \item A lower value for the penalty term results to:
+    \begin{itemize}
+        \item Weaker regularisation.
+        \item A more complex model.
+        \item Models may capture intricate patterns in the data.
+        \item Models are at higher risk of overfitting.
+    \end{itemize}
+\end{itemize}
+
+\end{document}
