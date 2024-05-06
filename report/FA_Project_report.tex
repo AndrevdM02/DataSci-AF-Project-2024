@@ -67,13 +67,13 @@ The strength of the regularisation is controlled by the penalty term, which cont
 that uses regularisation, can choose the value of the hyperparameter used in the penalty term. \\ Choosing the appropriate value for the hyperparameter used in the penalty term is crucial, as it directly impacts the trade-off
 between model complexity and generalisation performance.
 \begin{itemize}
-    \item A higher value for the penalty term results to:
+    \item A higher value for the hyperparameter results to:
     \begin{itemize}
         \item Stronger regularisation.
         \item A simpler model.
         \item Models are less prone to overfitting.
     \end{itemize}
-    \item A lower value for the penalty term results to:
+    \item A lower value for the hyperparameter results to:
     \begin{itemize}
         \item Weaker regularisation.
         \item A more complex model.
@@ -84,8 +84,7 @@ between model complexity and generalisation performance.
 
 \section*{Models and their regularisation methods.}
 
-\paragraph{Regularisation in regression models.}~
-\newline~
+\subsection*{Regularisation in regression models.}
 There are three main types of regularisation methods we use in regression models (Logistic regression and regression splines), which are:
 \begin{itemize}
     \item Lasso Regression (L1 Regularisation)
@@ -97,36 +96,50 @@ in order to prevent overfitting and improve the generalisation of the model. \\ 
 These three methods of regularisation are three of the most commonly used regularisation methods
 in statistical learning, therefore we will be investigating these methods much more thoroughly.
 
-\paragraph{Regularisation in smoothing splines and generalised additive models.}~
-\newline~
-When we use regularisation on a smoothing spline model, we add a penalty term to the smoothing spline's
+\subsection*{Regularisation in smoothing splines and generalised additive \\ models.}
+When we use regularisation in a \textbf{smoothing spline} model, we add a penalty term to the smoothing spline's
 loss function. In doing so, we ensure that some function g that makes RSS small is also smooth, by finding the function
 g that minimizes: $$ \sum_{i=1}^{n}(y_i-g(x_i))^2 + \lambda \int g''(t)^2 \,dt  $$ where $\lambda$ is a non-negative tuning parameter
 that controls the shrinkage/regularisation and the function g that minimizes this equation is known as a smoothing spline.
 The first term ($\Sigma_{i=1}^{n}(y_i-g(x_i))^2$) is the loss function that encourages g to fit the data well
 and the second term ($\lambda \int g''(t)^2 \,dt$) is the penalty term that penalizes the variability in g.
 \\ \\
-Generalised additive models replaces each linear component, in a linear regression model, with a (smooth) non-linear function.
+\textbf{Generalised additive models} replaces each linear component, in a linear regression model, with a (smooth) non-linear function.
 Thus, we replace each linear component with a smoothing spline function and regularisation in our generalised additive models is
-achieved by adding a penalty term to each smoothing spline function as shown above.
+achieved by applying regularisation on each smoothing spline function as shown above.
 
-\paragraph{Regularisation in trees.}~
-\newline~
+\subsection*{Regularisation in trees.}
+If we fit a tree model to our data without regularisation, it will most likely overfit the data, leading to poor results on unseen data. 
+A smaller tree with fewer splits might lead a higher bias, but it would also lower the variance and perform much better on unseen data.
+We prevent overfitting by using a technique called \textbf{pruning}.\\
+\textbf{Pruning} involves removing parts of the tree that leads to overfitting in order to find the subtree that leads to the lowest test error rate.
+\\ By using \textbf{cost complexity pruning (weakest link pruning)} we will only consider a sequence of trees indexed by a non-negative tuning parameter $\alpha$,
+instead of considering every possible subtree. The tree that minimises our \textit{training RSS} + $\alpha|T|$, where $|T|$ is the number of terminal nodes,
+will be the subtree that has the lowest test error rate.
+
+\subsection*{Regularisation in bagging and random forests.}
+In our \textbf{bagging} models, we build a number of decision trees on bootstrapped training samples. \textbf{Random forests}
+provide an improvement over bagged trees, because a Random forest model decorrelates the trees, since at each split in the tree,
+the majority of the available predictors may not be considered. \\ \\
+Both of these models will use the same method of regularisation, since Random forests is an improved model of bagging.
+The two regularisation methods that these models use are \textbf{Out-of-Bag error estimation} and \textbf{Variable (Feature) importance measures}.
+\\ \\
+\textbf{Out-of-Bag error estimation} is our estimated error when we test our model on the observations that has not been used by the bootstrapping technique (out-of-bag samples) when fitting our model.
+By monitoring our Out-of-Bag error we can prevent overfitting, as it shows us how well our model performs on unseen data.\\
+\textbf{Variable (Feature) importance measures} is a regularisation method where we measure the importance of each feature in the model by permuting the feature when we build our model,
+and then assessing how much the model's accuracy decreased or increased. This regularisation method identifies the most informative features and by removing these features,
+we reduce the risk of overfitting the model to noisy or irrelevant features.
+
+\subsection*{Regularisation in boosting.}
+Boosting works similarly to bagging and random forests, except that each tree is grown using information from previously grown trees. The trees are thus grown sequentially and does not involve bootstrap sampling.
 
 
-\paragraph{Regularisation in bagging.}~
-\newline~
+\subsection*{Regularisation in bayesian additive regression trees.}
 
-\paragraph{Regularisation in boosting.}~
-\newline~
 
-\paragraph{Regularisation in random forests.}~
-\newline~
 
-\paragraph{Regularisation in bayesian additive regression trees.}~
-\newline~
+\subsection*{Regularisation in optimal seperating hyperplanes and SVMs.}
 
-\paragraph{Regularisation in optimal seperating hyperplanes and SVMs.}~
-\newline~
+\subsection*{Regularisation in Cox's proportional hazards model.}
 
 \end{document}
