@@ -33,30 +33,38 @@
 
 \newpage
 
-\section*{The importance of regularisation}
+\section*{The importance of regularisation in all our models.}
 \paragraph{What is regularisation?}~
 \newline~
-\newline~
+% \newline~
 Regularisation is a technique we use in machine learning and statistical learning to prevent overfitting and
 to improve a model's ability to perform accurately on unseen or new data, also known as the generalisation of a model.
-\\ Regularisation is implemented by adding a penalty term to the model's objective function (also known as the loss function or error function).
+Regularisation also reduces the amount of error or noise (variance) in a model's predictions. 
 
-\paragraph{The significance of Regularisation.}~
+\paragraph{Regularisation in different models.}~
 \newline~
+% \newline~
+A lot of the models we work with uses a form of regularisation in order to prevent overfitting, improve generalisation and
+reduce the variance of the model. It is very important to know which type of regularisation method a model uses, in order 
+to interpret the parameters of the model and to prevent overfitting.
+
+\paragraph{The significance of Regularisation using a penalty term.}~
 \newline~
+% \newline~
+Regularisation using a penalty or shrinkage term is implemented by adding a penalty term to the model's objective function (also known as the loss function or error function).
 The objective function of a model quantifies the error or difference between the model's predicted output and the true output.
 \\ The goal during the training of a model is to minimize this objective function. By adding a penalty term to the objective function, regularisation forces the coefficients (weights) of the model to be small. This then:
 \begin{itemize}
     \item reduces the complexity of the model
-    \item prevents the model from overfitting 
-\end{itemize}
-Another benefit of using regularisation is that it reduces the amount of error or noise (variance) in the model's predictions. 
+    \item prevents the model from overfitting
+    \item reduces the variance of the model
+\end{itemize} 
 
-\paragraph{The impact of different strengths of the regularisation}~
+\paragraph{The impact of different strengths of the regularisation.}~
 \newline~
-\newline~
-The strength of the regularisation is controlled by the penalty term, which is a hyperparameter. Since the penalty is a hyperparameter, the person building a model,
-that uses regularisation, can choose the value of the penalty term. \\ Choosing the appropriate value for the penalty term is crucial, as it directly impacts the trade-off
+% \newline~
+The strength of the regularisation is controlled by the penalty term, which contains a hyperparameter. Since the penalty contains a hyperparameter, the person building a model,
+that uses regularisation, can choose the value of the hyperparameter used in the penalty term. \\ Choosing the appropriate value for the hyperparameter used in the penalty term is crucial, as it directly impacts the trade-off
 between model complexity and generalisation performance.
 \begin{itemize}
     \item A higher value for the penalty term results to:
@@ -73,5 +81,52 @@ between model complexity and generalisation performance.
         \item Models are at higher risk of overfitting.
     \end{itemize}
 \end{itemize}
+
+\section*{Models and their regularisation methods.}
+
+\paragraph{Regularisation in regression models.}~
+\newline~
+There are three main types of regularisation methods we use in regression models (Logistic regression and regression splines), which are:
+\begin{itemize}
+    \item Lasso Regression (L1 Regularisation)
+    \item Ridge Regression (L2 Regularisation)
+    \item Elastic Net Regression
+\end{itemize}
+All three of these regularisation methods adds a penalty term to the objective function
+in order to prevent overfitting and improve the generalisation of the model. \\ \\
+These three methods of regularisation are three of the most commonly used regularisation methods
+in statistical learning, therefore we will be investigating these methods much more thoroughly.
+
+\paragraph{Regularisation in smoothing splines and generalised additive models.}~
+\newline~
+When we use regularisation on a smoothing spline model, we add a penalty term to the smoothing spline's
+loss function. In doing so, we ensure that some function g that makes RSS small is also smooth, by finding the function
+g that minimizes: $$ \sum_{i=1}^{n}(y_i-g(x_i))^2 + \lambda \int g''(t)^2 \,dt  $$ where $\lambda$ is a non-negative tuning parameter
+that controls the shrinkage/regularisation and the function g that minimizes this equation is known as a smoothing spline.
+The first term ($\Sigma_{i=1}^{n}(y_i-g(x_i))^2$) is the loss function that encourages g to fit the data well
+and the second term ($\lambda \int g''(t)^2 \,dt$) is the penalty term that penalizes the variability in g.
+\\ \\
+Generalised additive models replaces each linear component, in a linear regression model, with a (smooth) non-linear function.
+Thus, we replace each linear component with a smoothing spline function and regularisation in our generalised additive models is
+achieved by adding a penalty term to each smoothing spline function as shown above.
+
+\paragraph{Regularisation in trees.}~
+\newline~
+
+
+\paragraph{Regularisation in bagging.}~
+\newline~
+
+\paragraph{Regularisation in boosting.}~
+\newline~
+
+\paragraph{Regularisation in random forests.}~
+\newline~
+
+\paragraph{Regularisation in bayesian additive regression trees.}~
+\newline~
+
+\paragraph{Regularisation in optimal seperating hyperplanes and SVMs.}~
+\newline~
 
 \end{document}
