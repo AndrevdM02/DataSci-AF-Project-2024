@@ -164,6 +164,20 @@ How we find an optimal value of our hyperparameter is discussed in a later secti
 Since our support vector machine model is a support vector classifier in a high dimensions, regularisation of our model is obtained by regularising our support vector classifiers and then applying kernel functions to our model. 
 
 \subsection*{Regularisation in Cox's proportional hazards model.}
+The \textbf{Cox proportional hazards model} is an important multivariable model when the outcome is the length of time to reach a discrete event. We add a penalty term to negative log partial likelihood (objective function)
+of our model in order to minimise this objective function with respect to $\boldsymbol{\underline{\beta}}$:
+$$ -ln\left(\prod_{i:\delta_i=1}\frac{exp(\sum_{j=1}^{p}\beta_j x_{ij})}{\sum_{i':y_{i'}\geq y_i}exp(\sum_{j=1}^{p} \beta_j x_{i'j})}\right) + \lambda P(\boldsymbol{\underline{\beta}})$$
+Where $\lambda$ is a non-negative hyperparameter and $P(\boldsymbol{\underline{\beta}})$ is either:
+\begin{itemize}
+    \item $\sum_{j=1}^{p}\beta_{j}^2$ (ridge penalised Cox model)
+    \item $\sum_{j=1}^{p}|\beta_j|$ (lasso penalised Cox model)
+\end{itemize}
+By adding these penalty terms, we reduce the variance of each coefficient ($\beta_j$) and we prevent overfitting.
+
+\newpage
+\subsection*{Regularisation in K-Means clustering, partitioning around medoids(PAM) and hierarchical clustering}
 
 
 \end{document}
+https://www.sciencedirect.com/science/article/pii/S2452306224000029
+https://lirias.kuleuven.be/retrieve/725949
