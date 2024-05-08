@@ -120,7 +120,7 @@ will be the subtree that has the lowest test error rate.
 \subsection*{Regularisation in bagging and random forests.}
 In our \textbf{bagging} models, we build a number of decision trees on bootstrapped training samples. \textbf{Random forests}
 provide an improvement over bagged trees, because a Random forest model decorrelates the trees, since at each split in the tree,
-the majority of the available predictors may not be considered. \\ \\
+the majority of the available predictors may not be considered. \\
 Both of these models will use the same method of regularisation, since Random forests is an improved model of bagging.
 The two regularisation methods that these models use are \textbf{Out-of-Bag error estimation} and \textbf{Variable (Feature) importance measures}.
 \\ \\
@@ -130,16 +130,40 @@ By monitoring our Out-of-Bag error we can prevent overfitting, as it shows us ho
 and then assessing how much the model's accuracy decreased or increased. This regularisation method identifies the most informative features and by removing these features,
 we reduce the risk of overfitting the model to noisy or irrelevant features.
 
-\subsection*{Regularisation in boosting.}
-Boosting works similarly to bagging and random forests, except that each tree is grown using information from previously grown trees. The trees are thus grown sequentially and does not involve bootstrap sampling.
+\subsection*{Regularisation in boosting and bayesian additive regression trees.}
+\textbf{Boosting} works similarly to bagging and random forests, except that each tree is grown using information from previously grown trees. The trees are thus grown sequentially and does not involve bootstrap sampling.
+Regularisation in boosting models are applied by way of slow learning, in order to generalise better to unseen data to prevent overfitting and to stabilise the learning process, making it less sensitive to noise in the training data.
+We consider three boosting models namely \textbf{AdaBoost.M1}, \textbf{Functional Gradient Descent (FGD)} and \textbf{$L_{2}$-boosting}.
+\\ \\
+\textbf{AdaBoost.M1} makes use of sequential learning to regularise the learning process. Each subsequent learner focuses on the mistakes made by the previous ones
+that allows the model to iteratively improve the model's performance by correcting the errors made by earlier weak learners. 
+AdaBoost.M1 also makes use of a slow learning rate in order to regularise the model.\\
+\textbf{Functional Gradient Descent (FGD)} is a framework that extends gradient descent methods to function spaces.
+We add a shrinkage parameter $\lambda$ (a small value) in order to control the rate at which boosting learns. This shrinkage parameter 
+slows the learning process down even further, allowing more and different shaped trees to attack the residuals and minimise the loss function. \\
+\textbf{$L_{2}$-boosting} uses the FGD framework above and adds another tuning parameter that indicates the number of splits in each tree, which controls the complexity of the boosted ensemble.
+\\ \\
+\textbf{Bayesian additive regression trees (BART)} is an ensemble method that constructs each new tree randomly, as in bagging and RF, and each tree tries to capture information not yet accounted 
+for by the current model, as in bagging. Regularisation is obtained by slow learning, limiting the size of the tree and by trying to improve the fit of the current partial residuals by slightly modifying the tree obtained in the previous iteration.
 
-
-\subsection*{Regularisation in bayesian additive regression trees.}
-
-
-
-\subsection*{Regularisation in optimal seperating hyperplanes and SVMs.}
+\subsection*{Regularisation in optimal separating hyperplanes and SVCs and SVMs.}
+\textbf{Optimal separating hyperplanes} are models that aims to find the hyperplane that best separates the data points of different classes. These models are used for binary classification tasks.
+The smallest distance from each training observation to a separating hyperplane is known as the \textit{margin}. 
+Regularisation is thus obtained by maximising the margin. \\ \\
+\textbf{Support vector classifiers (SVC)} is an improved model of the optimal separates hyperplanes models, as it allows some observations to be on the
+wrong side of the margin and on the wrong side of the hyperplane (misclassified). The SVC model is an improvement, as optimal separating hyperplanes may overfit due to noisy data, and they are typically
+impossible to fit. Regularisation of the support vector classifiers is obtained by maximising the margin and by adding a regularisation parameter (\textit{C}), which determines the amount of observations that can violate the margin.
+\begin{itemize}
+    \item A large \textit{C} leads to fewer classification errors and a small margin, which leads to overfitting.
+    \item A small \textit{C} leads to a large margin and allowing more classification errors.
+\end{itemize}
+Thus, it is really important to find an optimal value of \textit{C} which isn't too large or too small.
+How we find an optimal value of our hyperparameter is discussed in a later section.
+\\ \\
+\textbf{Support vector machines} is a support vector classifier making use of kernel functions in order to obtain a non-linear function in order to fit the model to data with high dimensions.
+Since our support vector machine model is a support vector classifier in a high dimensions, regularisation of our model is obtained by regularising our support vector classifiers and then applying kernel functions to our model. 
 
 \subsection*{Regularisation in Cox's proportional hazards model.}
+
 
 \end{document}
