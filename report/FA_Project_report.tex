@@ -172,11 +172,33 @@ Where $\lambda$ is a non-negative hyperparameter and $P(\boldsymbol{\underline{\
     \item $\sum_{j=1}^{p}\beta_{j}^2$ (ridge penalised Cox model)
     \item $\sum_{j=1}^{p}|\beta_j|$ (lasso penalised Cox model)
 \end{itemize}
-By adding these penalty terms, we reduce the variance of each coefficient ($\beta_j$) and we prevent overfitting.
+By adding these penalty terms, we reduce the variance of each coefficient ($\beta_j$), we prevent overfitting and our model
+generalises better to unseen data. Thus, by applying regularisation to our Cox model, we build a much more reliable model for survival analysis.
 
 \newpage
-\subsection*{Regularisation in K-Means clustering, partitioning around medoids(PAM) and hierarchical clustering}
+\subsection*{Regularisation in K-Means clustering.}
+Regularisation in our unsupervised clustering models is also very important as it:
+\begin{itemize}
+    \item Helps control the complexity of the models
+    \item Prevents overfitting
+    \item Improves the models generalisation
+    \item Stabilises clustering results.
+\end{itemize}
+In a \textbf{k-means clustering} model, we form clusters by minimising the with-in cluster variation.
+We apply regularisation to our k-means clustering model by adding a penalty term to this function in order to
+avoid excessively large clusters. Our objective function that we minimise would then be:
+$$ \frac{1}{n} \sum_{k=1}^{K}\left(\sum_{i \epsilon C_k}\left\lVert \underline{x}_i - \underline{\mu}_k\right\rVert_{2}^{2} \right) + \lambda P(\boldsymbol{\underline{\mu}}) $$
+where $\lambda$ is a non-negative hyperparameter, n is the number of observations ,$\{C_1,...,C_K\}$ is a collection of K disjoint sets of cluster indices satisfying
+$\bigcup_{k=1}^{K}C_k = \{1,...,n\}$ and $P(\boldsymbol{\underline{\mu}})$ is the penalty term that depends on the cluster centers $\boldsymbol{\underline{\mu}}$.
+\\
+Possible forms our penalty term can be is:
+\begin{itemize}
+    \item $P(\boldsymbol{\underline{\mu}}) = \sum_{j=1}^{p} abs \left( \left\lVert\boldsymbol{\underline{\mu}}_{.,j}\right\rVert \right)$    \{Lasso regression\}
+    \item $P(\boldsymbol{\underline{\mu}}) = \sum_{j=1}^{p} \left\lVert\boldsymbol{\underline{\mu}}_{.,j}\right\rVert^2$    \{Ridge regression\}
+\end{itemize}
+Where $\boldsymbol{\underline{\mu}}_{.,j}$ denotes the $j^{th}$ column of the matrix of cluster centers $\boldsymbol{\underline{\mu}}$.
 
+\section*{Tuning a hyperparameter}
 
 \end{document}
 https://www.sciencedirect.com/science/article/pii/S2452306224000029

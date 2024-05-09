@@ -154,6 +154,9 @@ INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib6.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm
+INPUT c:/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
 INPUT FA_Project_report.aux
 INPUT ./FA_Project_report.out
 INPUT ./FA_Project_report.out
